@@ -1,6 +1,7 @@
  
 
-CREATE TABLE [IF NOT EXISTS] oauth_client_details
+DROP TABLE IF  EXISTS oauth_client_details ;
+CREATE TABLE  oauth_client_details
 (
    client_id                 VARCHAR (255) PRIMARY KEY,
    resource_ids              VARCHAR (255),
@@ -15,36 +16,41 @@ CREATE TABLE [IF NOT EXISTS] oauth_client_details
    autoapprove               VARCHAR (255)
 );
 
-CREATE TABLE [IF NOT EXISTS] oauth_client_token (
+DROP TABLE IF  EXISTS oauth_client_token ;
+CREATE TABLE  oauth_client_token (
   token_id VARCHAR(255),
-  token LONG VARBINARY,
+  token BYTEA,
   authentication_id VARCHAR(255) PRIMARY KEY,
   user_name VARCHAR(255),
   client_id VARCHAR(255)
 );
 
-CREATE TABLE [IF NOT EXISTS] oauth_access_token (
+DROP TABLE IF  EXISTS oauth_access_token ;
+CREATE TABLE  oauth_access_token (
   token_id VARCHAR(255),
-  token LONG VARBINARY,
+  token BYTEA,
   authentication_id VARCHAR(255) PRIMARY KEY,
   user_name VARCHAR(255),
   client_id VARCHAR(255),
-  authentication LONG VARBINARY,
+  authentication BYTEA,
   refresh_token VARCHAR(255)
 );
 
-CREATE TABLE [IF NOT EXISTS] oauth_refresh_token (
+DROP TABLE IF  EXISTS oauth_refresh_token ;
+CREATE TABLE  oauth_refresh_token (
   token_id VARCHAR(255),
-  token LONG VARBINARY,
-  authentication LONG VARBINARY
+  token BYTEA,
+  authentication BYTEA
 );
 
-CREATE TABLE if
-  not exists oauth_code (
-  code VARCHAR(255), authentication LONG VARBINARY
+
+DROP TABLE IF  EXISTS oauth_code ;
+CREATE TABLE  oauth_code (
+  code VARCHAR(255), authentication BYTEA
 );
 
-CREATE TABLE [IF NOT EXISTS] oauth_approvals (
+DROP TABLE IF  EXISTS oauth_approvals ;
+CREATE TABLE  oauth_approvals (
     userId VARCHAR(255),
     clientId VARCHAR(255),
     scope VARCHAR(255),
@@ -53,7 +59,8 @@ CREATE TABLE [IF NOT EXISTS] oauth_approvals (
     lastModifiedAt TIMESTAMP
 );
 
-CREATE TABLE [IF NOT EXISTS] ClientDetails (
+DROP TABLE IF  EXISTS ClientDetails ;
+CREATE TABLE   ClientDetails (
   appId VARCHAR(255) PRIMARY KEY,
   resourceIds VARCHAR(255),
   appSecret VARCHAR(255),
@@ -68,16 +75,20 @@ CREATE TABLE [IF NOT EXISTS] ClientDetails (
 );
 
    
-CREATE TABLE [IF NOT EXISTS] oauth_authority (
+DROP TABLE IF  EXISTS oauth_authority ;
+CREATE TABLE  oauth_authority (
    id  INT NOT NULL,
    name VARCHAR(255),
    PRIMARY KEY (id)
 );
 
+ALTER TABLE oauth_authority DROP CONSTRAINT IF EXISTS authority_name;
+
 ALTER TABLE  oauth_authority ADD CONSTRAINT authority_name UNIQUE (name);
 
  
-CREATE TABLE [IF NOT EXISTS] oauth_users (
+DROP TABLE IF  EXISTS oauth_users ;
+CREATE TABLE oauth_users (
    id INT NOT NULL,
    account_expired BOOLEAN,
    account_locked BOOLEAN,
@@ -86,13 +97,17 @@ CREATE TABLE [IF NOT EXISTS] oauth_users (
    password VARCHAR(255),
    user_name VARCHAR(255),
    PRIMARY KEY (id)
-) ENGINE=InnoDB ;
+);
 
-ALTER TABLE oauth_users ADD CONSTRAINT oauth_users_user_name UNIQUE (user_name);
+
+ALTER TABLE oauth_users DROP CONSTRAINT IF EXISTS oauth_users_user_name;
+
+ALTER TABLE oauth_users ADD CONSTRAINT  oauth_users_user_name UNIQUE (user_name);
 
 
  
-CREATE TABLE [IF NOT EXISTS] users_authorities (
+DROP TABLE IF  EXISTS users_authorities ;
+CREATE TABLE users_authorities (
    user_id INT8 NOT NULL,
    authority_id INT8 NOT NULL,
    PRIMARY KEY (user_id, authority_id)

@@ -18,4 +18,9 @@ spring:
         generate-ddl: false
         properties:
             hibernate:
-                dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+                temp:
+                    use_jdbc_metadata_defaults: false
+                jdbc:
+                    lob:
+                        non_contextual_creation: true
+                dialect: org.hibernate.dialect.PostgreSQL9Dialect
