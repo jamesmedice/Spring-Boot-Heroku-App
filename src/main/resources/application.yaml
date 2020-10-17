@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+    datasource:
+        password: ${RDBMS_PASSWORD:28d7757632d33de96406b7517e561b1b29796843695ca368a6e98deca3797464}
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://${DATABASE_HOST:ec2-54-217-213-79.eu-west-1.compute.amazonaws.com}:${DATABASE_PORT:5432}/${DATABASE_NAME:d7gr8u6mejppks}?sslmode=require
+        username: ${DATABASE_USER:myexdxofydyfwr}
+        initialization-mode: always
+        initialize: true
+        schema: classpath:/schema.sql
+        data: classpath:/data.sql
+    jpa:
+        hibernate:
+            ddl-auto: none
+        show-sql: true
+        generate-ddl: false
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL5InnoDBDialect
