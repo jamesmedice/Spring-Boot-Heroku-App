@@ -22,7 +22,6 @@
 		<oauth2-autoconfigure>2.1.0.RELEASE</oauth2-autoconfigure>
 		<swagger2.version>2.9.2</swagger2.version>
 		<postgresql.version>42.2.18</postgresql.version>
-		<jasypt>3.0.3</jasypt>
 	</properties>
 
 	<dependencies>
@@ -64,12 +63,6 @@
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>${swagger2.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.github.ulisesbocchio</groupId>
-			<artifactId>jasypt-spring-boot-starter</artifactId>
-			<version>${jasypt}</version>
 		</dependency>
 
 	</dependencies>
