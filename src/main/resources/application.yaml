@@ -1,9 +1,13 @@
 server:
   port: 8080
+               
+jasypt:
+    encryptor:
+        password: KEYOAUTH2
 
 spring:
     datasource:
-        password: ${RDBMS_PASSWORD:28d7757632d33de96406b7517e561b1b29796843695ca368a6e98deca3797464}
+        password: ${RDBMS_PASSWORD:DVk9mnRMd6fzeki7Q7zOzAaH6VFfG9fFrzPB2STbC3xKk5zqcCMiQpKEghrF3EctIFb3GvdDFDvuM3rnoYO27zxOWfYwyXodWGSURa9v1TiwImqZLi5wL/L8VYOg83XSxBEkuFdWm4aVzmG04KRGeA==}
         driver-class-name: org.postgresql.Driver
         url: jdbc:postgresql://${DATABASE_HOST:ec2-54-217-213-79.eu-west-1.compute.amazonaws.com}:${DATABASE_PORT:5432}/${DATABASE_NAME:d7gr8u6mejppks}?sslmode=require
         username: ${DATABASE_USER:myexdxofydyfwr}
