@@ -1,27 +1,46 @@
 server:
-  port: 8080
+  port: ${SERVER_PORT:8080}
 
 
-spring:
-    datasource:
-        password: ${RDBMS_PASSWORD}
-        driver-class-name: org.postgresql.Driver
-        url: jdbc:postgresql://${DATABASE_HOST:ec2-54-217-213-79.eu-west-1.compute.amazonaws.com}:${DATABASE_PORT:5432}/${DATABASE_NAME:d7gr8u6mejppks}?sslmode=require
-        username: ${DATABASE_USER:myexdxofydyfwr}
-        initialization-mode: always
-        initialize: true
-        schema: classpath:/schema.sql
-        data: classpath:/data.sql
-    jpa:
-        hibernate:
-            ddl-auto: none
-        show-sql: true
-        generate-ddl: false
-        properties:
-            hibernate:
-                temp:
-                    use_jdbc_metadata_defaults: false
-                jdbc:
-                    lob:
-                        non_contextual_creation: true
-                dialect: org.hibernate.dialect.PostgreSQL9Dialect
+spring: 
+  datasource: 
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: always
+    initialize: true
+    password: "${RDBMS_PASSWORD}"
+    url: "jdbc:postgresql://${DATABASE_HOST:ec2-54-217-213-79.eu-west-1.compute.amazonaws.com}:${DATABASE_PORT:5432}/${DATABASE_NAME:d7gr8u6mejppks}?sslmode=require"
+    username: "${DATABASE_USER:myexdxofydyfwr}"
+  jpa: 
+    generate-ddl: true
+    hibernate: 
+      ddl-auto: create-drop
+    properties: 
+      hibernate: 
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+        jdbc: 
+          lob: 
+            non_contextual_creation: true
+        temp: 
+          use_jdbc_metadata_defaults: false
+    show-sql: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 546618821556-pmu27o7emafo6sptkupqo446305hou0q.apps.googleusercontent.com
+            clientSecret: WIJr6E3XYLQL0gZYolcCnciN
+            scope:
+              - email
+              - profile
+          facebook:
+            clientId: 3458278670927257
+            clientSecret: 9ea591e9f03eda4405f4f54b41e806e3
+            scope:
+              - email
+              - public_profile
+        provider:
+          facebook:
+            authorizationUri: https://www.facebook.com/v3.0/dialog/oauth
+            tokenUri: https://graph.facebook.com/v3.0/oauth/access_token
+            userInfoUri: https://graph.facebook.com/v3.0/me?fields=id,first_name,middle_name,last_name,name,email,verified,is_verified,picture.width(250).height(250)
