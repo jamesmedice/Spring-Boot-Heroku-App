@@ -11,9 +11,9 @@ spring:
     url: jdbc:postgresql://${DATABASE_HOST:ec2-52-2-82-109.compute-1.amazonaws.com}:${DATABASE_PORT:5432}/${DATABASE_NAME:da51bhqa6qsdkd}?sslmode=require
     username: ${DATABASE_USER:qcsgbhwaxsrpyd}
   jpa: 
-    generate-ddl: true
+    generate-ddl: false
     hibernate: 
-      ddl-auto: create-drop
+      ddl-auto: none
     properties: 
       hibernate: 
         dialect: org.hibernate.dialect.PostgreSQL9Dialect
