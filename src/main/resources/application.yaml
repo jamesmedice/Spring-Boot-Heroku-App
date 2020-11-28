@@ -7,9 +7,9 @@ spring:
     driver-class-name: org.postgresql.Driver
     initialization-mode: always
     initialize: true
-    password: "${RDBMS_PASSWORD}"
-    url: "jdbc:postgresql://${DATABASE_HOST:ec2-54-217-213-79.eu-west-1.compute.amazonaws.com}:${DATABASE_PORT:5432}/${DATABASE_NAME:d7gr8u6mejppks}?sslmode=require"
-    username: "${DATABASE_USER:myexdxofydyfwr}"
+    password: ${RDBMS_PASSWORD}
+    url: jdbc:postgresql://${DATABASE_HOST:ec2-52-2-82-109.compute-1.amazonaws.com}:${DATABASE_PORT:5432}/${DATABASE_NAME:da51bhqa6qsdkd}?sslmode=require
+    username: ${DATABASE_USER:qcsgbhwaxsrpyd}
   jpa: 
     generate-ddl: true
     hibernate: 
